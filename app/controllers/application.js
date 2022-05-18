@@ -11,15 +11,15 @@ import { parse } from 'csv-parse';
 //import process from 'process';
 //import Buffer from 'buffer';
 
-// Buffer & process globals aren't defined here (because this is going through babel?)
+// With embroider these now work (because Webpack sees them and does its ProvidePlugin thing?)
 try {
-  console.log('Buffer', Buffer); // eslint-disable-line no-undef
+  console.log('Buffer -->', Buffer); // eslint-disable-line no-undef
 } catch (e) {
   console.warn(`Buffer not global in ember app controller module`, e);
 }
 
 try {
-  console.log('process', process); // eslint-disable-line no-undef
+  console.log('process -->', process); // eslint-disable-line no-undef
 } catch (e) {
   console.warn(`process not global in ember app controller module`, e);
 }
