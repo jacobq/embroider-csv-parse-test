@@ -6,12 +6,12 @@
 >Test parser</button>
 
 <strong>Records</strong>
-<pre data-test-id="output-area">
+<ul data-test-id="output">
   {{#each this.records as |rec i|}}
-    Record {{i}}:
-      {{#each rec as |field|}}{{field}}{{if (eq field rec.lastObject) "" ","}}{{/each}}
-
+    <li>Record {{i}}:
+      {{#each rec as |field|}}<span class="field">{{field}}</span>{{if (eq field rec.lastObject) "" ","}}{{/each}}
+    </li>
   {{/each}}
-</pre>
+</ul>
 
 {{outlet}}
