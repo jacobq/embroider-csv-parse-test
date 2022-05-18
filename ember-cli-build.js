@@ -26,7 +26,7 @@ module.exports = function (defaults) {
     staticAddonTrees: true,
     staticHelpers: true,
     staticModifiers: true,
-    // staticComponents: true, <-- doesn't work yet
+    staticComponents: true, // See https://github.com/emberjs/ember-test-helpers/issues/1220
     // splitAtRoutes: ['route.name'], // can also be a RegExp
     packagerOptions: {
       webpackConfig: {
