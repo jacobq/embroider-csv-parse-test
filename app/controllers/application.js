@@ -27,6 +27,11 @@ try {
 export default class ApplicationController extends Controller {
   @tracked records = [];
 
+  @action
+  clearRecords() {
+    this.records = []; // Note: doing `this.records.length = 0` doesn't trigger update :/
+  }
+
   // Using stream API
   // Adapted from https://github.com/adaltas/node-csv/tree/master/packages/csv-parse#example
   @action
@@ -49,18 +54,7 @@ export default class ApplicationController extends Controller {
       console.error(err.message);
     });
     console.log(`parse event handlers bound`);
-    // Test that the parsed records matched the expected records
-    /*
-    parser.on('end', function() {
-      assert.deepStrictEqual(
-        records,
-        [
-          [ 'root','x','0','0','root','/root','/bin/bash' ],
-          [ 'someone','x','1022','1022','','/home/someone','/bin/bash' ],
-        ]
-      );
-    });
-*/
+
     // Write data to the stream
     parser.write('root:x:0:0:root:/root:/bin/bash\n');
     parser.write('someone:x:1022:1022::/home/someone:/bin/bash\n');

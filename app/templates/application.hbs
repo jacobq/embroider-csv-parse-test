@@ -1,16 +1,29 @@
 {{page-title "EmbroiderCsvParseTest"}}
 
-<button role="button" type="button"
+<button
+  class="big-button"
+  role="button" type="button"
   {{on "click" this.runExample}}
   data-test-id="run-example-button"
 >Test parser</button>
-
-<strong>Records</strong>
+<button
+  class="big-button"
+  role="button" type="button"
+  {{on "click" this.clearRecords}}
+  disabled={{lt this.records.length 1}}
+  data-test-id="clear-button"
+>Clear records</button>
+<br>
 <ul data-test-id="output">
+  {{#if this.records.length}}
+    <strong>Records</strong>
+  {{/if}}
   {{#each this.records as |rec i|}}
     <li>Record {{i}}:
       {{#each rec as |field|}}<span class="field">{{field}}</span>{{if (eq field rec.lastObject) "" ","}}{{/each}}
     </li>
+  {{else}}
+    <strong>No records received</strong>
   {{/each}}
 </ul>
 

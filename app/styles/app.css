@@ -1,3 +1,9 @@
+button.big-button {
+  min-width: 150px;
+  margin: 10px;
+  padding: 10px;
+}
+
 span.field {
   font-family: "JetBrains Mono NL", "Courier New", Courier, monospace;
 }
