@@ -1,6 +1,6 @@
 'use strict';
 
-const StandardWebpack = require('webpack');
+const { ProvidePlugin } = require('webpack');
 const { Webpack } = require('@embroider/webpack');
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
@@ -34,7 +34,7 @@ module.exports = function (defaults) {
           global: true,
         },
         plugins: [
-          new StandardWebpack.ProvidePlugin({
+          new ProvidePlugin({
             Buffer: ['buffer', 'Buffer'],
             //process: ['process', 'process'],
             process: 'process',
