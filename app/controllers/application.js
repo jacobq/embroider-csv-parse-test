@@ -13,13 +13,13 @@ import { parse } from 'csv-parse';
 
 // Buffer & process globals aren't defined here (because this is going through babel?)
 try {
-  console.log('Buffer', Buffer);
+  console.log('Buffer', Buffer); // eslint-disable-line no-undef
 } catch (e) {
   console.warn(`Buffer not global in ember app controller module`, e);
 }
 
 try {
-  console.log('process', process);
+  console.log('process', process); // eslint-disable-line no-undef
 } catch (e) {
   console.warn(`process not global in ember app controller module`, e);
 }
@@ -45,12 +45,12 @@ export default class ApplicationController extends Controller {
       }
     });
     // Catch any error
-    parser.on('error', function(err){
+    parser.on('error', function (err) {
       console.error(err.message);
     });
     console.log(`parse event handlers bound`);
     // Test that the parsed records matched the expected records
-/*
+    /*
     parser.on('end', function() {
       assert.deepStrictEqual(
         records,
