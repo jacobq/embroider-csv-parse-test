@@ -1,7 +1,14 @@
 {{page-title "EmbroiderCsvParseTest"}}
 
-{{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
+<button role="button" {{on "click" this.runExample}}>Test parser</button>
+
+<strong>Records</strong>
+<pre>
+  {{#each this.records as |rec i|}}
+    Record {{i}}:
+      {{#each rec as |field j|}}{{field}}{{if (eq field rec.lastObject) "" ","}}{{/each}}
+
+  {{/each}}
+</pre>
 
 {{outlet}}

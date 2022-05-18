@@ -1,10 +1,58 @@
 'use strict';
 
+const Webpack = require('webpack');
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
-    // Add options here
+    autoImport: {
+      //alias: {},
+      webpack: {
+        node: {
+          global: true,
+        },
+        plugins: [
+          new Webpack.ProvidePlugin({
+            Buffer: ['buffer', 'Buffer'],
+            //process: ['process', 'process'],
+            process: 'process',
+          }),
+        ],
+        resolve: {
+          alias: {
+            // assert: "assert/",
+            buffer: require.resolve('buffer/'),
+            // console: "console-browserify",
+            // constants: "constants-browserify",
+            // crypto: "crypto-browserify",
+            // domain: "domain-browser",
+            // events: "events/",
+            // http: "stream-http",
+            // https: "https-browserify",
+            // os: "os-browserify/browser",
+            // path: "path-browserify",
+            // punycode: "punycode/",
+            process: require.resolve('process/browser'),
+            // querystring: "querystring-es3",
+            stream: require.resolve('stream-browserify'),
+            // stream: "stream-browserify",
+            // _stream_duplex: "readable-stream/duplex",
+            // _stream_passthrough: "readable-stream/passthrough",
+            // _stream_readable: "readable-stream/readable",
+            // _stream_transform: "readable-stream/transform",
+            // _stream_writable: "readable-stream/writable",
+            // string_decoder: "string_decoder/",
+            // sys: "util/",
+            // timers: "timers-browserify",
+            // tty: "tty-browserify",
+            // url: "url/",
+            // util: "util/",
+            // vm: "vm-browserify",
+            // zlib: "browserify-zlib",
+          },
+        },
+      },
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated
