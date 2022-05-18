@@ -1,9 +1,12 @@
 {{page-title "EmbroiderCsvParseTest"}}
 
-<button role="button" type="button" {{on "click" this.runExample}}>Test parser</button>
+<button role="button" type="button"
+  {{on "click" this.runExample}}
+  data-test-id="run-example-button"
+>Test parser</button>
 
 <strong>Records</strong>
-<pre>
+<pre data-test-id="output-area">
   {{#each this.records as |rec i|}}
     Record {{i}}:
       {{#each rec as |field|}}{{field}}{{if (eq field rec.lastObject) "" ","}}{{/each}}
