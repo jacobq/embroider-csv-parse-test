@@ -1,18 +1,40 @@
 'use strict';
 
-const Webpack = require('webpack');
+const StandardWebpack = require('webpack');
+const { Webpack } = require('@embroider/webpack');
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function (defaults) {
-  let app = new EmberApp(defaults, {
-    autoImport: {
-      //alias: {},
-      webpack: {
+  let app = new EmberApp(defaults, {});
+
+  // Use `app.import` to add additional libraries to the generated
+  // output files.
+  //
+  // If you need to use different assets in different
+  // environments, specify an object as the first parameter. That
+  // object's keys should be the environment name and the values
+  // should be the asset to use in that environment.
+  //
+  // If the library that you are including contains AMD or ES6
+  // modules that you would like to import into your application
+  // please specify an object with the list of modules as keys
+  // along with the exports of each module as its value.
+
+  //return app.toTree();
+  return require('@embroider/compat').compatBuild(app, Webpack, {
+    staticAddonTestSupportTrees: true,
+    staticAddonTrees: true,
+    staticHelpers: true,
+    staticModifiers: true,
+    // staticComponents: true, <-- doesn't work yet
+    // splitAtRoutes: ['route.name'], // can also be a RegExp
+    packagerOptions: {
+      webpackConfig: {
         node: {
           global: true,
         },
         plugins: [
-          new Webpack.ProvidePlugin({
+          new StandardWebpack.ProvidePlugin({
             Buffer: ['buffer', 'Buffer'],
             //process: ['process', 'process'],
             process: 'process',
@@ -54,19 +76,4 @@ module.exports = function (defaults) {
       },
     },
   });
-
-  // Use `app.import` to add additional libraries to the generated
-  // output files.
-  //
-  // If you need to use different assets in different
-  // environments, specify an object as the first parameter. That
-  // object's keys should be the environment name and the values
-  // should be the asset to use in that environment.
-  //
-  // If the library that you are including contains AMD or ES6
-  // modules that you would like to import into your application
-  // please specify an object with the list of modules as keys
-  // along with the exports of each module as its value.
-
-  return app.toTree();
 };
